@@ -1,0 +1,26 @@
+\begin{thebibliography}{1}
+
+\bibitem{introGranular2}
+A.~B. Yu, F.~Bassani, G.~L. Liedl, and P.~Wyder, {\em Powder Processing: Models
+  and Simulations}, pp.~401--414.
+\newblock Oxford: Elsevier, 2005.
+
+\bibitem{introGranular3}
+E.~S. Oran, J.~P. Boris, and R.~A. Meyers, {\em Fluid Dynamics}, pp.~31--43.
+\newblock New York: Academic Press, 2002.
+
+\bibitem{introGranular}
+R.~M. Nedderman, {\em Introduction}, pp.~1--6.
+\newblock Cambridge: Cambridge University Press, 1992.
+
+\bibitem{Weng:2015}
+X.~Weng, ``Modeling of complex hydraulic fractures in naturally fractured
+  formation,'' {\em Journal of Unconventional Oil and Gas Resources}, vol.~9,
+  pp.~114--135, 2015.
+
+\bibitem{grainLearning}
+H.~Cheng, T.~Shuku, K.~Thoeni, and H.~Yamamoto, ``Probabilistic calibration of
+  discrete element simulations using the sequential quasi-monte carlo filter,''
+  {\em Granular Matter}, vol.~20, no.~1, p.~11, 2018.
+
+\end{thebibliography}
