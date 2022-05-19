@@ -12,6 +12,16 @@
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage{caption}
 
+\bibliographystyle{elsarticle-num}
+\newcommand*{\subfilesbibliography}[1]{%
+ \expandafter\ifx\csname ver@subfiles.cls\endcsname\relax
+   \expandafter\@secondoftwo
+ \else
+   \expandafter\@firstoftwo
+  \fi
+  {\bibliography{#1}}
+  {}%
+}
 \graphicspath{ {./Images/} }
 \captionsetup[figure]{font=small}
 \title{Machine Learning in the calibration process of MercuryDPM Discrete Particle Model}
@@ -24,13 +34,13 @@
 
 \section{Introduction}
 
+
 \subfile{IntroSections/Intro.tex}
 
 % \section{Timeline and procedure}
 
 % \subfile{TimelineSections/Timeline.tex}
 
-\pagebreak
 % \section{Rebuttal}
 
 % \subfile{RebuttalSections/Rebuttal.tex}
@@ -38,20 +48,18 @@
 % \pagebreak
 
 
-\section{Theoretical Background}
-
-\subsection{Discrete Particle Model} 
-
-
+\section{Calibration}
+\subsection{DEM Simulations}
+\subfile{MercurySection/MercuryandSimulation.tex}
 
 \subsection{GrainLearning}
 
-\subsection{Neural Network}
 
+\subsection{Artificial Neural Network}
+\subfile{ANNSection/ANN.tex}
 
+\pagebreak  
 
-\pagebreak
-\bibliographystyle{elsarticle-num}
 \bibliography{citation}
 
 \end{document}

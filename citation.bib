@@ -1,10 +1,30 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% https://bibdesk.sourceforge.io/
 
-%% Created for Hung Nguyen at 2022-04-07 14:24:42 +0200 
+%% Created for Hung Nguyen at 2022-05-19 12:20:23 +0200 
+
+
 %% Saved with string encoding Unicode (UTF-8) 
 
 
+
+@article{MercuryDPM,
+	abstract = {We introduce the open-source package MercuryDPM, which we have been developing over the last few years. MercuryDPM is a code for discrete particle simulations. It simulates the motion of particles by applying forces and torques that stem either from external body forces, (gravity, magnetic fields, etc.) or particle interactions. The code has been developed extensively for granular applications, and in this case these are typically (elastic, plastic, viscous, frictional) contact forces or (adhesive) short-range forces. However, it could be adapted to include long-range (molecular, self-gravity) interactions as well. MercuryDPM is an object-oriented algorithm with an easy-to-use user interface and a flexible core, allowing developers to quickly add new features. It is parallelised using MPI and released under the BSD 3-clause licence. Its open-source developers' community has developed many features, including moving and curved walls; state-of-the-art granular contact models; specialised classes for common geometries; non-spherical particles; general interfaces; restarting; visualisation; a large self-test suite; extensive documentation; and numerous tutorials and demos. In addition, MercuryDPM has three major components that were originally invented and developed by its team: an advanced contact detection method, which allows for the first time large simulations with wide size distributions; curved (non-triangulated) walls; and multicomponent, spatial and temporal coarse-graining, a novel way to extract continuum fields from discrete particle systems. We illustrate these tools and a selection of other MercuryDPM features via various applications, including size-driven segregation down inclined planes, rotating drums, and dosing silos.
+Program summary
+Program Title: MercuryDPM Program Files doi: http://dx.doi.org/10.17632/n7jmdrdc52.1 Licensing provisions: BSD 3-Clause Programming language: C++, Fortran Supplementary material: http://mercurydpm.org Nature of problem: Simulation of granular materials, i.e. conglomerations of discrete, macroscopic particles. The interaction between individual grains is characterised by a loss of energy, making the behaviour of granular materials distinct from atomistic materials, i.e. solids, liquids and gases. Solution method: MercuryDPM (Thornton et al., 2013, 2019; Weinhart et al., 2016, 2017, 2019) is an implementation of the Discrete Particle Method (DPM), also known as the Discrete Element Method (DEM) (Cundall and Strack, 1979). It simulates the motion of individual particles by applying forces and torques that stem either from external forces (gravity, magnetic fields, etc.) or from particle-pair and particle--wall interactions (typically elastic, plastic, dissipative, frictional, and adhesive contact forces). DPM simulations have been successfully used to understand the many unique granular phenomena -- sudden phase transitions, jamming, force localisation, etc. -- that cannot be explained without considering the granular microstructure. Unusual features: MercuryDPM was designed ab initio with the aim of allowing the simulation of realistic geometries and materials found in industrial and geotechnical applications. It thus contains several bespoke features invented by the MercuryDPM team: (i) a neighbourhood detection algorithm (Krijgsman et al., 2014) that can efficiently simulate highly polydisperse packings, which are common in industry; (ii) curved walls (Weinhart et al., 2016) making it possible to model real industrial geometries exactly, without triangulation errors; and (iii) MercuryCG (Weinhart et al., 2012, 2013, 2016; Tunuguntla et al., 2016), a state-of-the-art analysis tool that extracts local continuum fields, providing accurate analytical/rheological information often not available from experiments or pilot plants. It further contains a large range of contact models to simulate complex interactions such as elasto-plastic deformation (Luding, 2008), sintering (Fuchs et al., 2017), melting (Weinhart et al., 2019), breaking, wet and dry cohesion (Roy et al., 2016, 2017), and liquid migration (Roy et al., 2018), all of which have important industrial applications.},
+	author = {Thomas Weinhart and Luca Orefice and Mitchel Post and Marnix P. {van Schrojenstein Lantman} and Irana F.C. Denissen and Deepak R. Tunuguntla and J.M.F. Tsang and Hongyang Cheng and Mohamad Yousef Shaheen and Hao Shi and Paolo Rapino and Elena Grannonio and Nunzio Losacco and Joao Barbosa and Lu Jing and Juan E. {Alvarez Naranjo} and Sudeshna Roy and Wouter K. {den Otter} and Anthony R. Thornton},
+	date-added = {2022-05-19 12:19:57 +0200},
+	date-modified = {2022-05-19 12:20:19 +0200},
+	doi = {10.1016/j.cpc.2019.107129},
+	issn = {0010-4655},
+	journal = {Computer Physics Communications},
+	keywords = {Granular materials, DEM, DPM, MercuryDPM, Open-source},
+	pages = {107129},
+	title = {Fast, flexible particle simulations --- An introduction to MercuryDPM},
+	volume = {249},
+	year = {2020},
+	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/S0010465519304357},
+	Bdsk-Url-2 = {https://doi.org/10.1016/j.cpc.2019.107129}}
 
 @inproceedings{granularExample,
 	author = {Fernandes, Ana and Gomes, Henrique and Campello, Eduardo M. B. and Pimenta, Paulo},
@@ -21,35 +41,31 @@
 	author = {L. Benvenuti and C. Kloss and S. Pirker},
 	date-added = {2022-04-07 10:16:08 +0200},
 	date-modified = {2022-04-07 10:16:20 +0200},
-	doi = {https://doi.org/10.1016/j.powtec.2016.01.003},
+	doi = {10.1016/j.powtec.2016.01.003},
 	issn = {0032-5910},
 	journal = {Powder Technology},
 	keywords = {Discrete Element Method () simulations, Parameter identification, Artificial neural networks},
 	pages = {456-465},
 	title = {Identification of DEM simulation parameters by Artificial Neural Networks and bulk experiments},
-	url = {https://www.sciencedirect.com/science/article/pii/S003259101630002X},
 	volume = {291},
 	year = {2016},
-	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/S003259101630002X},
-	Bdsk-Url-2 = {https://doi.org/10.1016/j.powtec.2016.01.003}}
+	Bdsk-Url-1 = {https://doi.org/10.1016/j.powtec.2016.01.003}}
 
 @article{ga-calibration,
 	abstract = {In this research, a universal framework for automated calibration of microscopic properties of modeled granular materials is proposed. The proposed framework aims at industrial scale applications, where optimization of the computational time step is important. It can be generally applied to all types of DEM simulation setups. It consists of three phases: data base generation, parameter optimization, and verification. In the first phase, DEM simulations are carried out on a multi-dimensional grid of sampled input parameter values to generate a database of macroscopic material responses. The database and experimental data are then used to interpolate the objective functions with respect to an arbitrary set of parameters. In the second phase, the Non-dominated Sorting Genetic Algorithm II (NSGA-II) is used to solve the calibration multi-objective optimization problem. In the third phase, the DEM simulations using the results of the calibrated input parameters are carried out to calculate the macroscopic responses that are then compared with experimental measurements for verification and validation. The proposed calibration framework has been successfully demonstrated by a case study with two-objective optimization for the model accuracy and the simulation time. Based on the concept of Pareto dominance, the trade-off between these two conflicting objectives becomes apparent. Through verification and validation steps, the approach has proven to be successful for accurate calibration of material parameters with the optimal simulation time.},
 	author = {Huy Q. Do and Alejandro M. Arag{\'o}n and Dingena L. Schott},
 	date-added = {2022-04-07 10:12:05 +0200},
 	date-modified = {2022-04-07 10:12:53 +0200},
-	doi = {https://doi.org/10.1016/j.apt.2018.03.001},
+	doi = {10.1016/j.apt.2018.03.001},
 	issn = {0921-8831},
 	journal = {Advanced Powder Technology},
 	keywords = {Parameter calibration, Discrete element method (DEM), Genetic algorithm (GA), Multi-objective optimization, NSGA, Inverse analysis},
 	number = {6},
 	pages = {1393-1403},
 	title = {A calibration framework for discrete element model parameters using genetic algorithms},
-	url = {https://www.sciencedirect.com/science/article/pii/S0921883118300773},
 	volume = {29},
 	year = {2018},
-	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/S0921883118300773},
-	Bdsk-Url-2 = {https://doi.org/10.1016/j.apt.2018.03.001}}
+	Bdsk-Url-1 = {https://doi.org/10.1016/j.apt.2018.03.001}}
 
 @article{Weng:2015,
 	abstract = {This paper presents a general overview of hydraulic fracturing models developed and applied to simulation of complex fractures in naturally fractured shale reservoirs. It discusses the technical challenges involved in modeling complex hydraulic fracture networks, the interaction between a hydraulic fracture and a natural fracture, and various models and modeling approaches developed to simulate hydraulic fracture--natural fracture interaction, as well as the induced large scale complex fractures during fracturing treatments.},
@@ -57,18 +73,16 @@
 	da = {2015/03/01/},
 	date-added = {2022-03-22 22:11:38 +0100},
 	date-modified = {2022-03-22 22:11:43 +0100},
-	doi = {https://doi.org/10.1016/j.juogr.2014.07.001},
+	doi = {10.1016/j.juogr.2014.07.001},
 	isbn = {2213-3976},
 	journal = {Journal of Unconventional Oil and Gas Resources},
 	keywords = {Hydraulic fracture model; Complex fractures; Fracture network; Hydraulic--natural fracture interaction; Stress shadow},
 	pages = {114--135},
 	title = {Modeling of complex hydraulic fractures in naturally fractured formation},
 	ty = {JOUR},
-	url = {https://www.sciencedirect.com/science/article/pii/S2213397614000354},
 	volume = {9},
 	year = {2015},
-	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/S2213397614000354},
-	Bdsk-Url-2 = {https://doi.org/10.1016/j.juogr.2014.07.001}}
+	Bdsk-Url-1 = {https://doi.org/10.1016/j.juogr.2014.07.001}}
 
 @inbook{introGranular3,
 	address = {New York},
@@ -78,16 +92,14 @@
 	da = {2002/01/01/},
 	date-added = {2022-03-22 22:10:19 +0100},
 	date-modified = {2022-04-07 14:22:55 +0200},
-	doi = {https://doi.org/10.1016/B0-12-227410-5/00248-9},
+	doi = {10.1016/B0-12-227410-5/00248-9},
 	isbn = {978-0-12-227410-7},
 	pages = {31--43},
 	publisher = {Academic Press},
 	title = {Encyclopedia of Physical Science and Technology (Third Edition)},
 	ty = {CHAP},
-	url = {https://www.sciencedirect.com/science/article/pii/B0122274105002489},
 	year = {2002},
-	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/B0122274105002489},
-	Bdsk-Url-2 = {https://doi.org/10.1016/B0-12-227410-5/00248-9}}
+	Bdsk-Url-1 = {https://doi.org/10.1016/B0-12-227410-5/00248-9}}
 
 @inbook{introGranular2,
 	address = {Oxford},
@@ -102,10 +114,8 @@
 	publisher = {Elsevier},
 	title = {Powder Processing: Models and Simulations, Encyclopedia of Condensed Matter Physics},
 	ty = {CHAP},
-	url = {https://www.sciencedirect.com/science/article/pii/B0123694019005568},
 	year = {2005},
-	Bdsk-Url-1 = {https://www.sciencedirect.com/science/article/pii/B0123694019005568},
-	Bdsk-Url-2 = {https://doi.org/10.1016/B0-12-369401-9/00556-8}}
+	Bdsk-Url-1 = {https://doi.org/10.1016/B0-12-369401-9/00556-8}}
 
 @inbook{introGranular,
 	abstract = {A granular material can be defined as any material composed of many individual solid particles, irrespective of the particle size. Thus the term granular material embraces a wide variety of materials from the coarsest colliery rubble to the finest icing sugar. The handling of granular materials is of the greatest importance in the chemical industry, it being estimated that on a weight basis, roughly one-half of the products and at least three-quarters of the raw materials are in the form of granular solids. When one adds to this the vast tonnages of wheat, sugar, iron ore, cement, sand and gravel that have to be stored and transported, the importance of granular materials becomes selfevident. The early dominance of oil in the history of the chemical industry has tended to emphasize the importance of fluid mechanics as one of the main constituents of a chemical engineer's education. It is only relatively recently that the economic advantage of a study of the behaviour of granular materials has been appreciated. One reason for this is that solids handling equipment has long been designed empirically and it is only over the last thirty years that the subject has been placed on a firm numerical basis. By contrast, the quantitative nature of fluid mechanics has been well-known since the work of Darcy in the 1840's.Granular materials, or bulk solids as they are sometimes called, are usually stored in hoppers or bunkers.},
@@ -123,10 +133,8 @@
 	publisher = {Cambridge University Press},
 	title = {Statics and Kinematics of Granular Materials},
 	ty = {CHAP},
-	url = {https://www.cambridge.org/core/books/statics-and-kinematics-of-granular-materials/introduction/6C6A5602FFC0E9039B2B9355A4E0314E},
 	year = {1992},
-	Bdsk-Url-1 = {https://www.cambridge.org/core/books/statics-and-kinematics-of-granular-materials/introduction/6C6A5602FFC0E9039B2B9355A4E0314E},
-	Bdsk-Url-2 = {https://doi.org/10.1017/CBO9780511600043.002}}
+	Bdsk-Url-1 = {https://doi.org/10.1017/CBO9780511600043.002}}
 
 @article{grainLearning,
 	abstract = {The calibration of discrete element method (DEM) simulations is typically accomplished in a trial-and-error manner. It generally lacks objectivity and is filled with uncertainties. To deal with these issues, the sequential quasi-Monte Carlo (SQMC) filter is employed as a novel approach to calibrating the DEM models of granular materials. Within the sequential Bayesian framework, the posterior probability density functions (PDFs) of micromechanical parameters, conditioned to the experimentally obtained stress--strain behavior of granular soils, are approximated by independent model trajectories. In this work, two different contact laws are employed in DEM simulations and a granular soil specimen is modeled as polydisperse packing using various numbers of spherical grains. Knowing the evolution of physical states of the material, the proposed probabilistic calibration method can recursively update the posterior PDFs in a five-dimensional parameter space based on the Bayes'rule. Both the identified parameters and posterior PDFs are analyzed to understand the effect of grain configuration and loading conditions. Numerical predictions using parameter sets with the highest posterior probabilities agree well with the experimental results. The advantage of the SQMC filter lies in the estimation of posterior PDFs, from which the robustness of the selected contact laws, the uncertainties of the micromechanical parameters and their interactions are all analyzed. The micro--macro correlations, which are byproducts of the probabilistic calibration, are extracted to provide insights into the multiscale mechanics of dense granular materials.},
