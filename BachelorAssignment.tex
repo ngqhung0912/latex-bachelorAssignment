@@ -13,15 +13,6 @@
 \usepackage{caption}
 
 \bibliographystyle{elsarticle-num}
-\newcommand*{\subfilesbibliography}[1]{%
- \expandafter\ifx\csname ver@subfiles.cls\endcsname\relax
-   \expandafter\@secondoftwo
- \else
-   \expandafter\@firstoftwo
-  \fi
-  {\bibliography{#1}}
-  {}%
-}
 \graphicspath{ {./Images/} }
 \captionsetup[figure]{font=small}
 \title{Machine Learning in the calibration process of MercuryDPM Discrete Particle Model}
@@ -55,8 +46,11 @@
 \subsection{GrainLearning}
 
 
-\subsection{Artificial Neural Network}
+\subsection{Designing a Neural Network}
 \subfile{ANNSection/ANN.tex}
+
+\section{Experimental Section}
+\subfile{ExperimentalSection/ExperimentalSection.tex}
 
 \pagebreak  
 

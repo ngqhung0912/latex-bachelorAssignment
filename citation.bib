@@ -1,12 +1,30 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% https://bibdesk.sourceforge.io/
 
-%% Created for Hung Nguyen at 2022-05-19 12:20:23 +0200 
+%% Created for Hung Nguyen at 2022-05-25 10:14:27 +0200 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
+
+@article{NN-GA,
+	abstract = {The discrete element method (DEM) is commonly used to study various powders in motion during transportation, screening, mixing, etc.; this requires several microscopic parameters to characterize the complex mechanical behavior of the particles. Herein, a new discrete element parameter calibration method is proposed to calibrate the ultrafine agglomerated powder (recycled polyurethane powder). Optimal Latin hypercube sampling and virtual simulation experiments were conducted using the commercial DEM software; the microscopic variables included the static friction coefficient between the particles, collision recovery coefficient, Johnson&ndash;Kendall&ndash;Roberts surface energy, static friction coefficient between the particles and wall, and collision recovery coefficient. A predictive model based on genetic-algorithm-optimized feedforward neural network (back propagation) was developed to calibrate the microscopic DEM simulation parameters. The cycle search algorithm and mean-shift cluster analysis were used to confirm the input parameters&rsquo; range by comparing the mean value of the dynamic angle of repose measured via the batch accumulation test. These parameters were verified by the baffle lifting method and the rotating drum method. This calibration method, once successfully developed, will be suitable for use in a variety of fine viscous powder dynamic flow conditions.},
+	article-number = {3350},
+	author = {He, Ping and Fan, Yiwei and Pan, Banglong and Zhu, Yinfeng and Liu, Jing and Zhu, Darong},
+	date-added = {2022-05-25 10:14:04 +0200},
+	date-modified = {2022-05-25 10:14:10 +0200},
+	doi = {10.3390/ma12203350},
+	issn = {1996-1944},
+	journal = {Materials},
+	number = {20},
+	pubmedid = {31615115},
+	title = {Calibration and Verification of Dynamic Particle Flow Parameters by the Back-Propagation Neural Network Based on the Genetic Algorithm: Recycled Polyurethane Powder},
+	url = {https://www.mdpi.com/1996-1944/12/20/3350},
+	volume = {12},
+	year = {2019},
+	Bdsk-Url-1 = {https://www.mdpi.com/1996-1944/12/20/3350},
+	Bdsk-Url-2 = {https://doi.org/10.3390/ma12203350}}
 
 @article{MercuryDPM,
 	abstract = {We introduce the open-source package MercuryDPM, which we have been developing over the last few years. MercuryDPM is a code for discrete particle simulations. It simulates the motion of particles by applying forces and torques that stem either from external body forces, (gravity, magnetic fields, etc.) or particle interactions. The code has been developed extensively for granular applications, and in this case these are typically (elastic, plastic, viscous, frictional) contact forces or (adhesive) short-range forces. However, it could be adapted to include long-range (molecular, self-gravity) interactions as well. MercuryDPM is an object-oriented algorithm with an easy-to-use user interface and a flexible core, allowing developers to quickly add new features. It is parallelised using MPI and released under the BSD 3-clause licence. Its open-source developers' community has developed many features, including moving and curved walls; state-of-the-art granular contact models; specialised classes for common geometries; non-spherical particles; general interfaces; restarting; visualisation; a large self-test suite; extensive documentation; and numerous tutorials and demos. In addition, MercuryDPM has three major components that were originally invented and developed by its team: an advanced contact detection method, which allows for the first time large simulations with wide size distributions; curved (non-triangulated) walls; and multicomponent, spatial and temporal coarse-graining, a novel way to extract continuum fields from discrete particle systems. We illustrate these tools and a selection of other MercuryDPM features via various applications, including size-driven segregation down inclined planes, rotating drums, and dosing silos.
