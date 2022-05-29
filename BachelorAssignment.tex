@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{xr-hyper}
 \usepackage{subfiles}
 \usepackage{amsmath}
 \usepackage[english]{babel}
@@ -11,6 +12,24 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage{caption}
+
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+
+\myexternaldocument{ANNSection/ANN.tex}
+\myexternaldocument{IntroSections/Intro.tex}
+
 
 \bibliographystyle{elsarticle-num}
 \graphicspath{ {./Images/} }
