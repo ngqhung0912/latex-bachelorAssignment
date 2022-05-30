@@ -2,24 +2,19 @@ GrainLearning is a calibration toolbox developed by Cheng et al., utilizes the r
 
 \begin{algorithm}
     \caption{GrainLearning}\label{algorithm:GrainLearning}
-    \begin{algorithmic}[1]
-    \Procedure{Calibration}{}
-    \State$\textit{input} \gets \text{measurement \textbf{y}, DEM solver \(\textbf{x} = F(\theta))}$
-    \State $i \gets \textit{patlen}$
-    \BState \emph{top}:
-    \If {$i > \textit{stringlen}$} \Return false
-    \EndIf
-    \State $j \gets \textit{patlen}$
-    \BState \emph{loop}:
-    \If {$\textit{string}(i) = \textit{path}(j)$}
-    \State $j \gets j-1$.
-    \State $i \gets i-1$.
-    \State \textbf{goto} \emph{loop}.
-    \State \textbf{close};
-    \EndIf
-    \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-    \State \textbf{goto} \emph{top}.
-    \EndProcedure
+    \begin{algorithmic}
+        \State$\textbf{Input:}$
+        \State$\hspace*{5mm}\text{\textbf{y}}$ \Comment{\text{Experimental values}}
+        \State$\hspace*{5mm} \textbf{x = F$(\Theta)$} \gets \text{DEM solver}$
+        \State$\hspace*{5mm}\text{Initial guess range }(\Theta_{min}, \Theta_{max}) $
+        \Function{Calibration}{$\textbf{Input}$}
+            \For{k = 0 \textbf{to} K - 1}
+                \IIf {$k = 0$} $\text{sample quasi-random prior distribution } \Theta_{k}^{(i)} \sim p_0(\Theta)$ 
+                \IIf {$k > 0$} $\Theta_{k}^{(i)} \sim p_{k-1}(\Theta \mid y_{1:T})$
+                \State$\text{Assume the normalized covariance parameter \sigma}$
+
+            \EndFor
+        \EndFunction
     \end{algorithmic}
-    \end{algorithm}
+\end{algorithm}
     

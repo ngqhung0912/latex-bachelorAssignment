@@ -18,6 +18,10 @@
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
+\algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
+\algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
+
+
 \bibliographystyle{elsarticle-num}
 \graphicspath{ {./Images/} }
 \captionsetup[figure]{font=small}
@@ -28,8 +32,6 @@
 
 \begin{document}
 \maketitle
-
-
 \section{Introduction}\label{section:Introduction}
 \input{IntroSections/Intro.tex}
 
@@ -43,12 +45,13 @@
 
 
 
-\section{Calibration}\label{section:Calibration}
+\section{Experimental Method}\label{section:Calibration}
 
 
 \subsection{MercuryDPM}
 \input{MercurySection/MercuryandSimulation.tex}
 
+\subsection{DPM Simulations}
 \subsection{GrainLearning}
 \input{GL-section/GL-Section.tex}
 
@@ -56,7 +59,7 @@
 \subsection{Neural Network}
 \input{ANNSection/ANN.tex}
 
-\section{Experimental Section}\label{section:ExperimentalSection}
+\section{Experimental Result}\label{section:ExperimentalSection}
 \input{ExperimentalSection/ExperimentalSection.tex}
 
 \pagebreak  
