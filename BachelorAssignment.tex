@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \usepackage{xr-hyper}
 \usepackage{subfiles}
 \usepackage{amsmath}
@@ -12,24 +11,12 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage{caption}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \makeatletter
-\newcommand*{\addFileDependency}[1]{% argument=file name and extension
-  \typeout{(#1)}
-  \@addtofilelist{#1}
-  \IfFileExists{#1}{}{\typeout{No file #1.}}
-}
+\def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
-
-\newcommand*{\myexternaldocument}[1]{%
-    \externaldocument{#1}%
-    \addFileDependency{#1.tex}%
-    \addFileDependency{#1.aux}%
-}
-
-\myexternaldocument{ANNSection/ANN.tex}
-\myexternaldocument{IntroSections/Intro.tex}
-
 
 \bibliographystyle{elsarticle-num}
 \graphicspath{ {./Images/} }
@@ -42,10 +29,9 @@
 \begin{document}
 \maketitle
 
-\section{Introduction}
 
-
-\include{IntroSections/Intro.tex}
+\section{Introduction}\label{section:Introduction}
+\input{IntroSections/Intro.tex}
 
 % \section{Timeline and procedure}
 
@@ -57,20 +43,21 @@
 
 
 
-\section{Calibration}
+\section{Calibration}\label{section:Calibration}
 
 
 \subsection{MercuryDPM}
-\include{MercurySection/MercuryandSimulation.tex}
+\input{MercurySection/MercuryandSimulation.tex}
 
 \subsection{GrainLearning}
+\input{GL-section/GL-Section.tex}
 
 
 \subsection{Neural Network}
-\include{ANNSection/ANN.tex}
+\input{ANNSection/ANN.tex}
 
-\section{Experimental Section}
-\include{ExperimentalSection/ExperimentalSection.tex}
+\section{Experimental Section}\label{section:ExperimentalSection}
+\input{ExperimentalSection/ExperimentalSection.tex}
 
 \pagebreak  
 

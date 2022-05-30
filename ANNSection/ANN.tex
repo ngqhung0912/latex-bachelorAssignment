@@ -1,13 +1,3 @@
-\documentclass[../BachelorAssignment.tex]{subfiles}
-\usepackage[colorlinks=true, allcolors=black]{hyperref}
- 
-
-\begin{document}
-\graphicspath{{\subfix{../Images/}}}
-
-
-
-
 In order to choose a correct NN model that can describes the relationship of micro- and macroparameters as indicated in the contact law, a "bottom-up" method is employed. Initially, a simple one-input one-output NN will be built, to assess how many layers (and neurons) it would take to learn a quadratic relationship \(y = x^2\), and inverse relationship \(y = 1/x\).
 
 In the next step, a slightly more complex problem is analysed: a 4-D input and 4-D output model, with contact laws described in table xxx. Finally, a fully-functional model will be coupled with DEM simulations from MercuryDPM.   
@@ -15,4 +5,4 @@ In the next step, a slightly more complex problem is analysed: a 4-D input and 4
 Certain reccomendations will also be taken into account, (7 and 15? )
 
 
-\end{document}
+Artificial Neural Network (ANN) is a set of algorithms that seeks to identify correlations in data utilizing a technique that inspired by the way human brain operates - mimicking how each neurons in the brain signaling each other. The most basic ANN models is the Feedforward Multilayer Perceptron Neural Network (MLPNN), in which the purpose is to define the mapping between the input and output \(y = f(x;\theta)\), and approximate the parameter \(\theta\) which results in the best possible function. In MLPNN, the data will flows in one direction from the input to output, hence the name feedforwcanard. Like other supervised learning algorithms, a MLPNN need to be trained before it  accurately describe the relations between the input and output. This is typically done by feeding the network with pre-labeled data, compare the model's output with the desired output, and update the weights parameter \(\theta\) - a process called backpropagation. In the context of this Assignment, Neural Network (NN) will be used when refering to Feedforward Multilayer Perceptron Neural Network. 
