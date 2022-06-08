@@ -13,6 +13,8 @@
 \usepackage{caption}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{nicefrac}
+\usepackage{bookmark}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -20,8 +22,9 @@
 
 \algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
 \algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
+\algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
 
-
+% elsarticle-num
 \bibliographystyle{elsarticle-num}
 \graphicspath{ {./Images/} }
 \captionsetup[figure]{font=small}
@@ -48,10 +51,10 @@
 \section{Experimental Method}\label{section:Calibration}
 
 
-\subsection{MercuryDPM}
+\subsection{Discrete Particle Model}
 \input{MercurySection/MercuryandSimulation.tex}
 
-\subsection{DPM Simulations}
+
 \subsection{GrainLearning}
 \input{GL-section/GL-Section.tex}
 
@@ -61,7 +64,6 @@
 
 \section{Experimental Result}\label{section:ExperimentalSection}
 \input{ExperimentalSection/ExperimentalSection.tex}
-
 \pagebreak  
 
 \bibliography{citation}

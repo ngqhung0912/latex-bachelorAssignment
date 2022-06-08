@@ -1,20 +1,66 @@
-GrainLearning is a calibration toolbox developed by Cheng et al., utilizes the recursive Bayesian algorithm to estimate the uncertainty parameters in DPM. Initially, a wide range of parameter space is quasi-randomly sampled numbers from the initial guess range to create a prior distribution of each parameter. Then, conditioned on the experimental values, the posterior distribution of the parameters is updated recursively by Sequential Monte-Carlo Filtering (SMC Filter) and fitted to a Gaussian Mixture Model. This process is done iteratively, until a desired value that minimises the loss function is reach, typically 3 iterations. 
+GrainLearning is a calibration toolbox developed by Cheng et al., utilizes the recursive Bayesian algorithm to estimate the uncertainty parameters in DPM. Initially, a wide range of parameter space is quasi-randomly sampled from the initial guess range to create a prior distribution of each parameter. Then, conditioned on the experimental values, the posterior distribution of the parameters is updated recursively by Sequential Monte-Carlo Filtering (SMC Filter) and fitted to a Gaussian Mixture Model. This process is done iteratively, until a desired value that minimises the loss function is reach, typically 3 iterations. Algorithm \ref{algorithm:GrainLearning} and the following sections will describe in brief the calibration workflow implemented in GrainLearning. 
 
 \begin{algorithm}
     \caption{GrainLearning}\label{algorithm:GrainLearning}
     \begin{algorithmic}
         \State$\textbf{Input:}$
-        \State$\hspace*{5mm}\text{\textbf{y}}$ \Comment{\text{Experimental values}}
-        \State$\hspace*{5mm} \textbf{x = F$(\Theta)$} \gets \text{DEM solver}$
-        \State$\hspace*{5mm}\text{Initial guess range }(\Theta_{min}, \Theta_{max}) $
-        \Function{Calibration}{$\textbf{Input}$}
-            \For{k = 0 \textbf{to} K - 1}
-                \IIf {$k = 0$} $\text{sample quasi-random prior distribution } \Theta_{k}^{(i)} \sim p_0(\Theta)$ 
-                \IIf {$k > 0$} $\Theta_{k}^{(i)} \sim p_{k-1}(\Theta \mid y_{1:T})$
-                \State$\text{Assume the normalized covariance parameter \sigma}$
+        \State$\hspace*{5mm}\text{\textbf{y: }} \text{Experimental values} $
+        \State$\hspace*{5mm} \textbf{x = F$(\Theta)$} \text{: DEM solver}$
+        \State$\hspace*{5mm}(\Theta_{min}, \Theta_{max}) \text{: Initial guess range} $
+        \State$\textbf{Main:}$
 
+            \LineComment{\textit{Set uniform prior distribution:}} $p(\Theta) = \mathcal{U}(\Theta_{min}, \Theta_{max})$
+            \For{k in range $(0, K)$}
+                \LineComment{\textit{Sampling parameters: }}
+                \If {$k = 0$} $\text{sample $N_{p}$ parameters values from initial  distribution: } \Theta_{k}^{(i)} \sim p_0(\Theta) $
+                \ElsIf {$k > 0$} $\text{sample $N_{p}$ parameters values from prior distribution: } \Theta_{k}^{(i)} \sim p_{k-1}(\Theta \mid y_{1:T})$
+                \EndIf
+                % \State$\text{Assume the normalized covariance parameter } \sigma $
+                \LineComment \textit{Evaluate DPM: }  $x_{k}^{(i)} = F(\Theta_{k}^{(i)}) $ 
+                \LineComment{Optimizing $\sigma$: }
+                \While{$\text{True}$} 
+                    \LineComment{\textit{Compute likelihood (Eq. \ref{eq:likelihood}): }} $p(y_t \mid \Theta_{k}^{(i)} ) \propto \mathcal{N}(y_{kt} \mid x_{kt}^{(i)}, \Sigma)$ 
+                    \LineComment{\textit{Compute posterior distribution of of $\Theta_{k}^{(i)}$ conditioned to $y$ (Eq. \ref{eq:posterior}).}}
+                    \LineComment{\textit{Compute Effective Sample Size (ESS) with Eq. \ref{eq:ESS}}.} 
+                    \LineComment{\textit{Stop if target ESS value is reached: }} 
+                    \If {$k = 0 \text{ and } ESS > 20\%$} $\text{break}$
+                    \ElsIf{$k > 0 \text{ and } ESS \sim ESS_{max}$} $\text{break}$
+                    \EndIf
+                \EndWhile
+                \LineComment{\textit{Fit sampled posterior distribution to Gaussian Mixture Model: }}  
+                $p(\Theta \mid y) = \sum_{\alpha}^{k} \lambda_{\alpha} \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha}) $
+                \LineComment{\textit{Set new prior distribution: }} $p(\Theta) \gets p(\Theta \mid y)$
             \EndFor
-        \EndFunction
+        \State \textbf{Output: } $\Theta_{opt}$ in $\Theta_{K}$ that minimizes $|F(\Theta_{opt} - y)|$
     \end{algorithmic}
 \end{algorithm}
+
+\subsubsection{Posterior distribution calculation}
+
+
+Initially, the measurement is assumed to have an error represented by a covariance matrix $\Sigma_{\alpha} = \sigma\omega_{\alpha}y_{\alpha}$, with $\sigma$ the covariance parameter, and important weight of the measurement $\omega$. With $\Sigma$, the likelihood of a given state $\Theta_{k}^{(i)}$, i.e., the probabilistic prediction to the experimental data $y$ can be estimated by the multivariate normal distribution, with $y_t$ measurement data at time step t, and $d$ the dimension of the state vector $\Theta_{k}^{(i)}$:
+
+
+\begin{equation} \label{eq:likelihood}
+p(y_t \mid \Theta_{k}^{(i)}) \propto \frac{1}{(2\pi)^{d/2}|\Sigma|}exp\left(-\frac{1}{2}(y_{kt} - x^{(i)}_{kt})^{\mathsf{T}}\Sigma^{-1}(y_{kt} - x^{(i)}_{kt} )\right)
+\end{equation}
+
+With the calibration system being modelled as a hidden Markov model, the posterior distribution of $\Theta_{k}^{(i)}$ can be calculated using recursive Bayes' rule: 
+
+\begin{equation} \label{eq:posterior}
+    p(\Theta_{k}^{(i)} \mid y) \propto \prod_{t=1}^{N_{t}} p(y_t \mid \Theta_{k}^{(i)} )p( \Theta_{k}^{(i)} ) 
+\end{equation}
+
+\subsubsection{Effective multi-level sampling}
+
+The Effective Sample Size (ESS) is calculated by summing the posterior distribution squared of all the sampled parameters value $N_{p}$:
+
+\begin{equation} \label{eq:ESS}
+ESS = \frac{1}{N_{p} \sum_{i=1}^{N_{p}} p(\Theta_{k}^{(i)} \mid y)^2}
+\end{equation}
+
+The main idea is to draw the sample from the previously acquired knowledge about the relationship between $\Theta$ and $y$. In the first iteration ($k = 0$), The uniform prior distribution is chosen as the proposal density, and the parameter spaces are drawn from there. Subsequently, for $k > 0$, the proposal density will be the posterior distribution from the previous iteration $p(\Theta \mid y)$. After each iterations, the sampling space will get narrower - therefore, to ensure a proper proposal density for the sampling of parameters, the optimization process will be continued until appropriate $\sigma$ which maximizes ESS is reached. 
+
+
+
     
