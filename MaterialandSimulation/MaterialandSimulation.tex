@@ -1,0 +1,23 @@
+\subsubsection{Material properties} \label{section:MatProp}
+The material chosen in this experiment is quartz sand, with experimental data provided by Derakhshani et al. \cite{DERAKHSHANI2015127}. There is no specific intrest regarding the choice of material; quartz sand is chosen due to the availability of data and the similarity of measurements. 
+
+\begin{table}[H]
+    \centering
+    \caption{Particle Size Distribution of quartz sand in the simulation}\label{table:PSDQuartzSand}
+    \begin{tabular}{l|l}
+        Particle Diameter (µm) & Cumulative Distribution (\%) \\ \hline
+        300                    & 6.21                         \\
+        425                    & 24.50                          \\
+        500                    & 50.55                        \\
+        600                    & 100                         
+    \end{tabular}
+\end{table}
+
+Among with the particle size distribution (PSD) given in Table \ref{table:PSDQuartzSand}, the fixed parameters in DEM simulations are density $\rho = 2653 kg/m^3$, and collision time $\Delta_t = 6.8 * 10^{-5}$. Static AoR of quartz sand measured by Derakhshani et al. is $33^{\circ}$.
+
+
+\subsubsection{Heap simulation}
+
+
+
+A heap simulation setup consists of two main part: A flat bottom panel and a cylinder, both represented by class \texttt{AxisymmetricIntersectionOfWalls}. 
