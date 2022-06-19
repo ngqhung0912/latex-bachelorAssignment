@@ -1,23 +1,49 @@
-\subsubsection{Material properties} \label{section:MatProp}
-The material chosen in this experiment is quartz sand, with experimental data provided by Derakhshani et al. \cite{DERAKHSHANI2015127}. There is no specific intrest regarding the choice of material; quartz sand is chosen due to the availability of data and the similarity of measurements. 
+% Experimental data on quartz sand is provided by Derakhshani et al.~\cite{DERAKHSHANI2015127}. There is no specific intrest regarding the choice of material; quartz sand is chosen due to the availability of data and the similarity of measurements. The density of quartz sand is $\rho = 2653~kg/m^3$, and the particle size distribution (PSD) given in Table~\ref{table:PSDQuartzSand},. Static AoR of quartz sand measured by Derakhshani et al.~is $33^{\circ}$. Meanwhile, experimental data on limestone is provided by Shi et al.~\cite{SHI2020183}, specifically the Eskal 150 limestone, since this material has a similar experimental static AoR and density, while the PSD is in a much lower range. The density of Eskal 150 is $2761~kg/m^3$, and the static AoR is also $33^{\circ}$.
+
 
 \begin{table}[H]
-    \centering
-    \caption{Particle Size Distribution of quartz sand in the simulation}\label{table:PSDQuartzSand}
+    % \centering\
     \begin{tabular}{l|l}
-        Particle Diameter (µm) & Cumulative Distribution (\%) \\ \hline
+        Diameter (µm) & Cumulative Distribution (\%) \\ \hline
         300                    & 6.21                         \\
         425                    & 24.50                          \\
         500                    & 50.55                        \\
         600                    & 100                         
     \end{tabular}
+    \begin{tabular}{l|l}
+        Diameter (µm) & Cumulative Distribution (\%) \\ \hline
+        97                    & 10                         \\
+        138                    & 50                          \\
+        194                    & 90                        
+    \end{tabular}
+    \caption{Particle Size Distribution of Eskal 150}\label{table:PSDlimestone} 
+    \caption{Particle Size Distribution of quartz sand}\label{table:PSDQuartzSand}
+
 \end{table}
 
-Among with the particle size distribution (PSD) given in Table \ref{table:PSDQuartzSand}, the fixed parameters in DEM simulations are density $\rho = 2653 kg/m^3$, and collision time $\Delta_t = 6.8 * 10^{-5}$. Static AoR of quartz sand measured by Derakhshani et al. is $33^{\circ}$.
+\textit{The above tables will be fixed.}
+
+% \begin{table}[H]
+%     \centering
+%     \begin{tabular}{l|l}
+%         Particle Diameter (µm) & Cumulative Distribution (\%) \\ \hline
+%         97                    & 10                         \\
+%         138                    & 50                          \\
+%         194                    & 90                        
+%     \end{tabular}
+%     \caption{Particle Size Distribution of Eskal 150}\label{table:PSDlimestone}
+% \end{table}
 
 
-\subsubsection{Heap simulation}
+The experimental data described above will be used as constant input values for each DEM simulation. In addition, four variables will be tested to determine their respective static AoR:\@
+\begin{itemize}
+    \item Restitution coefficient: Ratio between the velocity of the particle before and after collision.
+    \item Sliding friction: Force that acts on the opposite direction of the movement between two particles when they collide. 
+    \item Rolling friction: Force resists the rolling motion of the particle. 
+    \item Bond number: Ratio between gravitational force that act on the particle and the surface tension force, i.e., the easiness of movement due to gravity. 
+\end{itemize}
 
 
 
-A heap simulation setup consists of two main part: A flat bottom panel and a cylinder, both represented by class \texttt{AxisymmetricIntersectionOfWalls}. 
+
+

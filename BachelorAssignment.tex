@@ -30,13 +30,13 @@
 {\normalfont\normalsize\itshape}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
+\renewcommand{\arraystretch}{1.5}
 
 % elsarticle-num
 \bibliographystyle{elsarticle-num}
 \graphicspath{ {./Images/} }
 \captionsetup[figure]{font=small}
-\title{Machine Learning in the calibration process of MercuryDPM Discrete Particle Model: The case with Angle of Repose}
+\title{Machine Learning in the calibration process of Discrete Particle Model: The case with Angle of Repose}
 \author{Quang Hung Nguyen\\[1ex] \small Head Supervisor: Thomas Weinhart, Daily Supervisor: Anthony Thornton, Additional member: Chen Kuan. \\
 \small Multi-Scale Mechanics Group, Faculty of Engineering Technology, University of Twente.} 
 \date{}
@@ -57,13 +57,19 @@
 
 
 
-\section{Experimental Method}\label{section:Calibration}
+\section{Simulation Method}\label{section:ExpMethod}
 
 
-\subsection{Discrete Particle Model}
 \input{MercurySection/MercuryandSimulation.tex}
 
 
+
+\subsection{Material and simulation properties}\label{section:matprop}
+
+\input{MaterialandSimulation/MaterialandSimulation.tex}
+
+\section{Calibration of Discrete Particle Model}\label{section:Calibration}
+    
 \subsection{GrainLearning}
 \input{GL-section/GL-Section.tex}
 
@@ -71,13 +77,19 @@
 \subsection{Neural Network}
 \input{ANNSection/ANN.tex}
 
-\subsection{Experimental procedure}
+\subsection{Random Forest Regressor}
+\input{RandomForest/RandomForest.tex}
 
-\input{MaterialandSimulation/MaterialandSimulation.tex}
 
-\section{Experimental Result}\label{section:ExperimentalSection}
+\input{MaterialandSimulation/CalibrationMethod.tex}
+
+% section result and analysis 
+
 \input{ExperimentalSection/ExperimentalSection.tex}
-\pagebreak  
+
+
+
+\pagebreak 
 
 \bibliography{citation}
 

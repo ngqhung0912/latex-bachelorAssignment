@@ -59,7 +59,11 @@ The Effective Sample Size (ESS) is calculated by summing the posterior distribut
 ESS = \frac{1}{N_{p} \sum_{i=1}^{N_{p}} p(\Theta_{k}^{(i)} \mid y)^2}
 \end{equation}
 
-The main idea is to draw the sample from the previously acquired knowledge about the relationship between $\Theta$ and $y$. In the first iteration ($k = 0$), The uniform prior distribution is chosen as the proposal density, and the parameter spaces are drawn from there. Subsequently, for $k > 0$, the proposal density will be the posterior distribution from the previous iteration $p(\Theta \mid y)$. After each iterations, the sampling space will get narrower - therefore, to ensure a proper proposal density for the sampling of parameters, the optimization process will be continued until appropriate $\sigma$ which maximizes ESS is reached. 
+The main idea is to draw the sample from the previously acquired knowledge about the relationship between $\Theta$ and $y$. In the first iteration ($k = 0$), The uniform prior distribution is chosen as the proposal density, and the parameter spaces are drawn from there. Subsequently, for $k > 0$, the proposal density will be the posterior distribution from the previous iteration $p(\Theta \mid y)$. After each iterations, the sampling space will get narrower~-~therefore, to ensure a proper proposal density for the sampling of parameters, the optimization process will be continued until appropriate $\sigma$ which maximizes ESS is reached. 
+
+\subsubsection{Identification of microparameters with GrainLearning}
+In the first iteration of calibration, GrainLearning will initialize a set of parameter combinations using Halton sequence, from the initial guess range provided. This set of parameters will be passed to MercuryDPM to analyze with a Heap test, after which a static AoR is produced. From this data, GrainLearning will compute the next set of parameters on the basis of the previous MercuryDPM output, according to algorithm~\ref{algorithm:GrainLearning}. For each attempt, GL will be running for 4 iterations~-~except when the simulations of that iteration takes more than two days, and that attempt will be classified as failed. 
+
 
 
 
