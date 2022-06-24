@@ -1,21 +1,49 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% https://bibdesk.sourceforge.io/
 
-%% Created for Hung Nguyen at 2022-06-18 17:14:25 +0200 
+%% Created for Hung Nguyen at 2022-06-20 16:32:14 +0200 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
 
+@book{murphyML,
+	author = {Murphy, K.P.},
+	date-added = {2022-06-20 16:32:05 +0200},
+	date-modified = {2022-06-20 16:32:13 +0200},
+	isbn = {9780262018029},
+	lccn = {2012004558},
+	publisher = {MIT Press},
+	series = {Adaptive Computation and Machine Learning series},
+	title = {Machine Learning: A Probabilistic Perspective},
+	year = {2012},
+	bdsk-url-1 = {https://books.google.nl/books?id=NZP6AQAAQBAJ}}
+
+@article{BreimanRF,
+	abstract = {Random forests are a combination of tree predictors such that each tree depends on the values of a random vector sampled independently and with the same distribution for all trees in the forest. The generalization error for forests converges a.s. to a limit as the number of trees in the forest becomes large. The generalization error of a forest of tree classifiers depends on the strength of the individual trees in the forest and the correlation between them. Using a random selection of features to split each node yields error rates that compare favorably to Adaboost (Y. Freund \& R. Schapire, Machine Learning: Proceedings of the Thirteenth International conference, ***, 148--156), but are more robust with respect to noise. Internal estimates monitor error, strength, and correlation and these are used to show the response to increasing the number of features used in the splitting. Internal estimates are also used to measure variable importance. These ideas are also applicable to regression.},
+	author = {Breiman, Leo},
+	date = {2001/10/01},
+	date-added = {2022-06-20 15:27:29 +0200},
+	date-modified = {2022-06-20 15:27:54 +0200},
+	doi = {10.1023/A:1010933404324},
+	id = {Breiman2001},
+	isbn = {1573-0565},
+	journal = {Machine Learning},
+	number = {1},
+	pages = {5--32},
+	title = {Random Forests},
+	volume = {45},
+	year = {2001},
+	bdsk-url-1 = {https://doi.org/10.1023/A:1010933404324}}
+
 @book{DL-Goodfellow,
-    title={Deep Learning},
-    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
-    publisher={MIT Press},
-    note={\url{http://www.deeplearningbook.org}},
-    year={2016}, 
-	isbn = {9780262035613}
-}
+	author = {Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+	isbn = {9780262035613},
+	note = {\url{http://www.deeplearningbook.org}},
+	publisher = {MIT Press},
+	title = {Deep Learning},
+	year = {2016}}
 
 @article{scikit-learn,
 	author = {Fabian Pedregosa and Ga{{\"e}}l Varoquaux and Alexandre Gramfort and Vincent Michel and Bertrand Thirion and Olivier Grisel and Mathieu Blondel and Peter Prettenhofer and Ron Weiss and Vincent Dubourg and Jake Vanderplas and Alexandre Passos and David Cournapeau and Matthieu Brucher and Matthieu Perrot and {{\'E}}douard Duchesnay},
@@ -27,10 +55,6 @@
 	title = {Scikit-learn: Machine Learning in Python},
 	volume = {12},
 	year = {2011}}
-
-@article{cite-key,
-	date-added = {2022-06-18 14:14:15 +0200},
-	date-modified = {2022-06-18 14:14:18 +0200}}
 
 @article{YE2019292,
 	abstract = {The Discrete Element Method (DEM) requires input parameters to be calibrated and validated in order to accurately model the physical process being simulated. This is typically achieved through experiments that examine the macroscopic behavior of particles, however, it is often difficult to efficiently and accurately obtain a representative parameter set. In this study, a method is presented to identify and select a set of DEM input parameters by applying a backpropagation (BP) neural network to establish the non-linear relationship between dynamic macroscopic particle properties and DEM parameters. Once developed and trained, the BP neural network provides an efficient and accurate method to select the DEM parameter set. The BP neural network can be developed and trained for one or more laboratory calibration experiments, and be applied to a wide range of bulk materials under dynamic flow conditions.},
@@ -256,7 +280,7 @@ Program Title: MercuryDPM Program Files doi: http://dx.doi.org/10.17632/n7jmdrdc
 	journal = {Computer Physics Communications},
 	keywords = {Granular materials, DEM, DPM, MercuryDPM, Open-source},
 	pages = {107129},
-	title = {Fast, flexible particle simulations --- An introduction to MercuryDPM},
+	title = {{Fast, flexible particle simulations~-~An introduction to MercuryDPM}},
 	volume = {249},
 	year = {2020},
 	bdsk-url-1 = {https://www.sciencedirect.com/science/article/pii/S0010465519304357},
@@ -391,50 +415,10 @@ Program Title: MercuryDPM Program Files doi: http://dx.doi.org/10.17632/n7jmdrdc
 	bdsk-url-1 = {https://doi.org/10.1007/s10035-017-0781-y}}
 
 @misc{tensorflow2015-whitepaper,
-title={ {TensorFlow}: Large-Scale Machine Learning on Heterogeneous Systems},
-url={https://www.tensorflow.org/},
-author={
-    Mart\'{i}n~Abadi and
-    Ashish~Agarwal and
-    Paul~Barham and
-    Eugene~Brevdo and
-    Zhifeng~Chen and
-    Craig~Citro and
-    Greg~S.~Corrado and
-    Andy~Davis and
-    Jeffrey~Dean and
-    Matthieu~Devin and
-    Sanjay~Ghemawat and
-    Ian~Goodfellow and
-    Andrew~Harp and
-    Geoffrey~Irving and
-    Michael~Isard and
-    Yangqing Jia and
-    Rafal~Jozefowicz and
-    Lukasz~Kaiser and
-    Manjunath~Kudlur and
-    Josh~Levenberg and
-    Dandelion~Man\'{e} and
-    Rajat~Monga and
-    Sherry~Moore and
-    Derek~Murray and
-    Chris~Olah and
-    Mike~Schuster and
-    Jonathon~Shlens and
-    Benoit~Steiner and
-    Ilya~Sutskever and
-    Kunal~Talwar and
-    Paul~Tucker and
-    Vincent~Vanhoucke and
-    Vijay~Vasudevan and
-    Fernanda~Vi\'{e}gas and
-    Oriol~Vinyals and
-    Pete~Warden and
-    Martin~Wattenberg and
-    Martin~Wicke and
-    Yuan~Yu and
-    Xiaoqiang~Zheng},
-  year={2015},
-doi = {10.5281/zenodo.4724125},
-
-}
+	author = {Mart\'{i}n~Abadi and Ashish~Agarwal and Paul~Barham and Eugene~Brevdo and Zhifeng~Chen and Craig~Citro and Greg~S.~Corrado and Andy~Davis and Jeffrey~Dean and Matthieu~Devin and Sanjay~Ghemawat and Ian~Goodfellow and Andrew~Harp and Geoffrey~Irving and Michael~Isard and Yangqing Jia and Rafal~Jozefowicz and Lukasz~Kaiser and Manjunath~Kudlur and Josh~Levenberg and Dandelion~Man\'{e} and Rajat~Monga and Sherry~Moore and Derek~Murray and Chris~Olah and Mike~Schuster and Jonathon~Shlens and Benoit~Steiner and Ilya~Sutskever and Kunal~Talwar and Paul~Tucker and Vincent~Vanhoucke and Vijay~Vasudevan and Fernanda~Vi\'{e}gas and Oriol~Vinyals and Pete~Warden and Martin~Wattenberg and Martin~Wicke and Yuan~Yu and Xiaoqiang~Zheng},
+	doi = {10.5281/zenodo.4724125},
+	title = {{TensorFlow}: Large-Scale Machine Learning on Heterogeneous Systems},
+	url = {https://www.tensorflow.org/},
+	year = {2015},
+	bdsk-url-1 = {https://www.tensorflow.org/},
+	bdsk-url-2 = {https://doi.org/10.5281/zenodo.4724125}}
