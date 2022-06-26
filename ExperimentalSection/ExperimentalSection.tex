@@ -12,7 +12,10 @@
     \caption{Calibration attempts using GL}\label{table:GLCalibration}
 \end{table}
 
-Table~\ref{table:GLCalibration} gives details on different calibrations with GL for two materials mentioned above: quartz sand and limestone. The difference between each attempt is that the search range of the microparameters changed. The first attempt serves as the control for both materials, while the second and the third are set up in smaller ranges. Overall, approximately 200 DEM simulations were performed for quartz sand, and 3 produced a valid combination. For limestone, 300 DEM simulations were performed, and five are valid. The valid combinations are marked in bold on the result tables in the following section.
+
+To analyse the performance of GL in calibrating DPM, multiple attempts has been made for each materials. In each attempt, the search range of the microparameters changed
+
+Table~\ref{table:GLCalibration} gives details on different calibration attempts with GL for two materials mentioned above: quartz sand and limestone. The difference between each attempt is that the search range of the microparameters changed. The first attempt serves as the control for both materials, while the second and the third are set up in smaller ranges. Overall, approximately 200 DEM simulations were performed for quartz sand, and 3 produced a valid combination. For limestone, 300 DEM simulations were performed, and five are valid. The valid combinations are marked in bold on the result tables in the following section.
 
 \subsection{Limestone}
 The calibration results by GL for limestone are described in table~\ref{table:resEskalGL}, and the details on how the sampling algorithm performs, i.e., conditioned on the previous simulation, is the sampled parameters for the next iteration make the simulation result converge to the experimental result, are described in figure~\ref{fig:EskalGL}. In the third calibration attempt, the second iteration did not finish in time due to the system's high level of kinetic energy; therefore, only iteration 1 is shown. 
@@ -44,6 +47,7 @@ As expected, the second attempt's performance was the most robust, reaching a ne
     1.2 & 0.869 & 0.2725 & 0.3652 & 0.0325 & 39.4803 \\
     1.3 & 0.831 & 0.1194 & 0.484 & 0.064 & 33.0406 \\
     1.4 & 0.8332 & 0.135 & 0.5262 & 0.0137 & 31.5243 \\
+    1.5 & 0.8348 & 0.1517 & 0.497 & 0.0297 & 33.6745 \\
     2.1 & 0.6406 & 0.037 & 0.36 & 0.3061 & 33.0979 \\
     2.2 & 0.9546 & 0.3983 & 0.032 & 0.0334 & 32.9993 \\
     2.3 & 0.8263 & 0.0917 & 0.2226 & 0.1411 & 34.1421 \\
@@ -54,12 +58,11 @@ As expected, the second attempt's performance was the most robust, reaching a ne
     \caption{Calibration results of limestone with GL.}\label{table:resEskalGL}
 \end{table}
     
-
 \subsection{Quartz sand}
 
 The calibration result for quartz sand is given in table~\ref{table:resSandGL}, and the parameters sampling graph is given in figure~\ref{fig:QuartzGL}. In the control attempt, only the first iteration is shown, partly due to 6/40 simulations of the second iteration does not finish in time, but also due to the results of the second iteration does not cluster at the experimental value, with most averaging around $45^{\circ}$ to $50^{\circ}$. Due to the similarity between quartz sand and limestone in terms of experimental static AoR, the second attempt of quartz sand will be initialized with the same range as the second attempt of limestone. And as a result, attempt 2 has the best performance out of the three. One noticeable thing here is that the rolling friction has two different clusters identified by GL instead of one, compared to sliding friction, restitution coefficient, or bond number. This denotes the multi-solution phenomena of a calibration problem since there could be more than one combination that can produce a sufficient static AoR~-~which is shown in iterations 3 and 4 of attempt 2: the rolling friction for iteration 3 is 0.07, while for iteration 4 is 0.41. Different experiments, i.e., Shear Cell test or Drum test (Dynamic AoR), would be needed in addition to the heap test to find an ideal combination of microparameters. However, this is out of the scope of the current research. 
 
-In the third attempt, although the range was specified as shown in table~\ref{table:GLCalibration}, the Gaussian Mixture Model algorithm of GL sampled some of the values in iteration 3 and 4 outside the initial range. This was a known bug in the current GL version implemented in MercuryDPM. However, it was able to generate a correct combination which results in a static AoR of $34.2227^{\circ}$, remarkably close to the experimental value, by sampling a combination with very low sliding friction. 
+In the third attempt, although the range was specified as shown in table~\ref{table:GLCalibration}, the Gaussian Mixture Model algorithm of GL sampled some of the values in iteration 3 and 4 outside the initial range. This was a known bug in the current GL version implemented in MercuryDPM. Therefore, it was able to generate a correct combination with very low sliding friction, which results in a static AoR of $34.2227^{\circ}$, remarkably close to the experimental value. 
 
 
 \begin{figure}[H]
@@ -87,20 +90,31 @@ In the third attempt, although the range was specified as shown in table~\ref{ta
     \end{tabular}%
     }\caption{Calibration results of sand with GL.}\label{table:resSandGL}
 \end{table}
-    
-        
-\subsection{GL discussion}
-
-Throughout multiple calibration routines with GrainLearning, it is identified that the initial guessing range played a key role in the ability of GL to idenfity the correct set of micro-parameters.
+    \subsection{Discussion} 
+ 
+ Overall, GL has demonstrated the capability to identify the `cluster' in all calibration cases that the initial ranges were correctly defined~-~the combinations after each iterations are sampled closer and closer to the experimental value, as shown in attempt 2 of limestone and quartz sand. However, it has also shown inconsistent performance: In attempt 1 of limestone, the algorithm seeks to cluster in the range of $35^{\circ}$ to $45^{\circ}$. 
 
 
 \section{Supervised model evaluation}\label{section:supervisedPerformance}
 
-In this section, the performance of the two supervised models, i.e., Neural Network and Random Forest, is investigated for limestone and quartz sand, respectively. 
+In this section, the performance of the two supervised models, i.e., Neural Network and Random Forest, is investigated for limestone and quartz sand, respectively. For the NN model, over 800,000 different combinations, as describe in table~\ref{table:randomCombinations}, has been processed~-~and over 2,000,000 for RF model. Any combinations that produce a static AoR within the $0.1\%$ margin of error to the experimental data are marked as a correct combination. This combination will then be evaluated independently by a DEM simulation to verify the ability of supervised models to correctly describe a material's bulk behaviour based on the given contact law. 
 
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{c|cccc}
+     & Restitution Coefficient & Sliding Friction & Rolling Friction & Bond number \\ \hline
+    Range & {[}0.5 1{]} & {[}1e-5 1{]} & {[}1e-5 1{]} & {[}1e-5 1{]} \\
+    Number of values (NN) & 30 & 30 & 30 & 30 \\
+    Number of values (RF) & 38 & 38 & 38 & 38
+    \end{tabular}%
+    }
+    \caption{Random evenly-spaced microparameters combinations}\label{table:randomCombinations}
+\end{table}
+    
 \subsection{Limestone}
 
-For limestone, 12 over 500,000 combinations of DEM input parameters processed by the ANN was a `valid' combination: the output of the ANN was $33\pm 0.01^{\circ}$. Meanwhile, with 2,500,000 million combinations processed by RF, 22 of them were valid combinations~-~however, many of them are closely similar with a minor difference in one of the micro parameters, and only nine are distinct. The valid combinations are described in table~\ref{table:EskalNN} and~\ref{table:eskalRF}, with figure~\ref{fig:EskalNNRF} illustrates the combinations and their respective output. Overall, the NN model has correctly identified three combinations, while the Random Forest model has 2. 
+For limestone, 12 over 800,000 combinations of DEM input parameters processed by the ANN was a `valid' combination: the output of the ANN was $33\pm 0.01^{\circ}$. Meanwhile, with 2,000,000 million combinations processed by RF, 22 of them were valid combinations~-~however, many of them are closely similar with a minor difference in one of the micro parameters, and only nine are distinct. The valid combinations are described in table~\ref{table:EskalNN} and~\ref{table:eskalRF}, with figure~\ref{fig:EskalNNRF} illustrates the combinations and their respective output. Overall, the NN model has correctly identified three combinations, while the Random Forest model has 2. 
 
 
 \begin{figure}[H]
@@ -217,16 +231,29 @@ It is noteworthy that the quartz sand model was trained with less simulations co
     \label{table:sandlRF}
 \end{table}
     
-\subsection{NN and RF model discussion}
+\subsection{Discussion} 
 
-Overall, the supervised models have demonstrated the ability to learn the contact law relationship of DPM for a specified materials. It is expected that the model would not has a high predition accuracy ($>70\%$) when being fed and process millions of combinations, with limited training data. And therefore, limitations of the model can be seen in some case, especially with quartz sand: the model
+In the current approach, NN and RF models have demonstrated the ability to capture the bulk DPM behavior and generate a database that can then be used to interpolate bulk parameters. Due to limited training data, it is not expected that the models would have a high accuracy in the interpolation step, so a validation step is needed. However, the current number of valid combinations does not meet the expectations of a calibration problem. This can be seen in the quartz sand's RF model: multiple combinations that have been marked as valid by the model have either the same sliding friction or bond number~-~and this is the case for the NN model with limestone as well. One possible solution for this is to extend the `valid' combination range from the current $33\pm0.001$~-~however this will result in a lot more valid combinations and thus only be possible if combined with other bulk tests to reduce the number of verification simulations. Only the combinations that produce satisfactory value in all bulk tests will be verified with DEM simulations. 
+
+Another limitations of the supervised approach is that each trained model only account for a single contact law~-~in this case is the linear-spring dashpot model. If the current contact law is not appropriate to describe the granular material, choosing another contact law would require a completely new model. 
 
 
-\section{Discussion}\label{section:discussion}
 
-- GrainLearning has an inconsistent performance, especially when parameter ranges are specified too wide. Assume a calibration with GL cost 40 DEM simulations per iteration, for each bulk parameter it would be 7-8 iterations ~ 300 DEM simulations = > less DEM simulations, fully automatic, has been proven for more complex contact laws. 
+\section{Model comparision}\label{section:discussion}
+
+One of the most important factor in the calibration process of DPM is computational efficiency, since each DEM simulation is very costly in term of resources (for a static AoR, the simulation time varies from 2 to 24 hours each, and other simulations such as Dynamic AoR, shear cell test are even more expensive). 
+
+The current calibration routine using GL for static AoR costs around 120 to 150 DEM simulations, depends on how many iterations are needed. And most of the time, GL will delivers an adequate solution~-~except the first attempt with limestone as mentioned in section~\ref{section:GLPerformance}, where GL sampled combinations clusters in the wrong location. Meanwhile, with the current implementation of supervised models, 300 to 500 DEM simulations would be neccessary to train the models, and and about 20 more are neccessary to verify the combinations that supervised models output (training and interpolating time are not taken into account here since they are negligible compare to simulation time). 
+
+However, computational efficiency would not be the only factor in weighing different method, since this approach of calibration (matching DEM bulk value with experimental bulk value) has no unique solution, i.e., a combinations of microparameters that works  
+
+
+
+one of the main point: computational efficiency. 
+-Assume a calibration with GL cost 40 DEM simulations per iteration, for each bulk parameter it would be 7-8 iterations ~ 300 DEM simulations = > less DEM simulations, fully automatic, has been proven for more complex contact laws. 
 
 - For limestone, the amount of DEM simulations used to train NN and RF are 485, and for quartz sand are 322. The numbers are slightly higher than GL, but the performance are more robust from a small experiment: Produces multiple valid combinations per bulk parameter, therefore easier to identify the correct one by comparision with other bulk parameter's combinations. 
 
 - Limitations of RF: has not been tested against complex contact laws
 
+Throughout multiple calibration routines with GrainLearning, it is identified that the initial guessing range played a key role in the ability of GL to idenfity the correct set of micro-parameters.

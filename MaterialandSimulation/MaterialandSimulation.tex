@@ -1,4 +1,4 @@
-Experimental data on quartz sand is provided by Derakhshani et al.~\cite{DERAKHSHANI2015127}. The density of quartz sand is $\rho = 2653~kg/m^3$, and the particle size distribution (PSD) given in Table~\ref{table:psd}, with the static AoR of $33^{\circ}$. Meanwhile, experimental data on limestone is provided by Shi et al.~\cite{SHI2020183}, specifically the Eskal 150 limestone, since this material has a similar experimental static AoR and density, while the PSD is in a much lower range. The density of Eskal 150 is $2761~kg/m^3$, and the static AoR is also $33^{\circ}$.
+Experimental data on quartz sand is provided by Derakhshani et al.~\cite{DERAKHSHANI2015127}. The density of quartz sand is $\rho = 2653~kg/m^3$, and the particle size distribution (PSD) given in Table~\ref{table:psd}, with the static AoR of $33^{\circ}$. Meanwhile, experimental data on limestone is provided by Shi et al.~\cite{SHI2020183}, specifically the Eskal 150 limestone, since this material has a similar static AoR and density ($33^{\circ}$ and $2761~kg/m^3$), while the PSD is in a much lower range. 
 
 
 \begin{table}[H]
@@ -17,15 +17,7 @@ Experimental data on quartz sand is provided by Derakhshani et al.~\cite{DERAKHS
 \end{table}
         
 
-The experimental data described above will be used as constant input values for each DEM simulation. In addition, four variables will be tested to determine their respective static AoR:\@
-\begin{itemize}
-    \item Restitution coefficient: Ratio between the velocity of the particle before and after collision. The restitution coefficient is in the range of 0 to 1, with 1 denotes a perfectly elastic collision.
-    \item Sliding friction: Force that acts on the opposite direction of the movement between two particles when they collide. 
-    \item Rolling friction: Force resists the rolling motion of the particle. 
-    \item Bond number: Ratio between gravitational force that act on the particle and the surface tension force, i.e., the easiness of movement due to gravity. 
-\end{itemize}
-
-In addition to the range bound of Restitution Coefficient, all other microparameters has a positive bound~-~the value ranges from 0 to $\infty$, however in most realistic case the value is also smaller than 1.
-
+The experimental data described above will be used as constant input values for each DEM simulation. In addition, four 
+variables~-~including three described in eq.~\ref{eq:sliding},~\ref{eq:rolling}, and~\ref{eq:bond} will be tested to determine their respective static AoR:~Restitution coefficient, sliding friction, rolling friction, and bond number. The restitution coefficient is the ratio between the particle's velocity before and after the collision. The parameter range of restitution coefficient is 0 to 1, with 1 denoting a perfectly elastic collision. All other microparameters has a positive bound~-~the value ranging from 0 to $\infty$; however, in most realistic case, the value is also smaller than 1. 
 
 
