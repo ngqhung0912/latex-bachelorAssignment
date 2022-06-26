@@ -11,15 +11,14 @@
     \end{tabular}
     \caption{Calibration attempts using GL}\label{table:GLCalibration}
 \end{table}
+ gives details on different calibrations with GL for two materials mentioned
+and limestone. The difference between each attempt is that the search range of the microparameters changed. The first attempt serves as the control for both materials, while the second and the third are set up in smaller ranges. Overall, approximately 200 DEM simulations were performed for quartz sand, and 3 produced a valid combination. For limestone, 300 DEM simulations were performed, and five are valid. The valid combinations are marked in bold on the result tables in the following section.
 
-
-To analyse the performance of GL in calibrating DPM, multiple attempts has been made for each materials. In each attempt, the search range of the microparameters changed
-
-Table~\ref{table:GLCalibration} gives details on different calibration attempts with GL for two materials mentioned above: quartz sand and limestone. The difference between each attempt is that the search range of the microparameters changed. The first attempt serves as the control for both materials, while the second and the third are set up in smaller ranges. Overall, approximately 200 DEM simulations were performed for quartz sand, and 3 produced a valid combination. For limestone, 300 DEM simulations were performed, and five are valid. The valid combinations are marked in bold on the result tables in the following section.
 
 \subsection{Limestone}
 The calibration results by GL for limestone are described in table~\ref{table:resEskalGL}, and the details on how the sampling algorithm performs, i.e., conditioned on the previous simulation, is the sampled parameters for the next iteration make the simulation result converge to the experimental result, are described in figure~\ref{fig:EskalGL}. In the third calibration attempt, the second iteration did not finish in time due to the system's high level of kinetic energy; therefore, only iteration 1 is shown. 
-In the control attempt, initially, only four iterations were performed. However, one remarkable observation is that GL clusters over the combinations produce a static AoR around $40^{\circ}$. This is reflected in the second iteration's result, where the best combination results in a static AoR of $39.4803^{\circ}$. Moreover, although the third iteration's result is $33.0979^{\circ}$, this seems like an outlier of the cluster. Therefore, an additional iteration was performed~-~and the results here verify the observation. The closest value to experimental static AoR is $31.5243^{\circ}$, and it is also the outlier of the cluster. 
+
+In the first attempt, only four iterations were performed initially. However, one remarkable observation is that GL clusters over the combinations produce a static AoR around $40^{\circ}$. This is reflected in the second iteration's result, where the best combination results in a static AoR of $39.4803^{\circ}$. Moreover, although the third iteration's result is $33.0979^{\circ}$, this seems like an outlier of the cluster. Consequently, an additional iteration was performed~-~and the results here verify the observation. The closest value to experimental static AoR is $31.5243^{\circ}$, and it is also an outlier. 
 
 After the first calibration attempt, it is clear that the combinations that would result in the desired static AoR lie around $0.8-1.0$ for restitution coefficient and in the lower-0.25 range for the rest of the contact parameters. Therefore, two more attempts were performed, with different initial ranges: attempt 2 with sliding friction, rolling friction, and bond number ranging from 0 to 0.5. With attempt 3, the sliding friction, rolling friction, and bond number range from 0.5 to 1, while the restitution coefficient's range is widened to 0 to 1. 
 
@@ -243,17 +242,6 @@ Another limitations of the supervised approach is that each trained model only a
 
 One of the most important factor in the calibration process of DPM is computational efficiency, since each DEM simulation is very costly in term of resources (for a static AoR, the simulation time varies from 2 to 24 hours each, and other simulations such as Dynamic AoR, shear cell test are even more expensive). 
 
-The current calibration routine using GL for static AoR costs around 120 to 150 DEM simulations, depends on how many iterations are needed. And most of the time, GL will delivers an adequate solution~-~except the first attempt with limestone as mentioned in section~\ref{section:GLPerformance}, where GL sampled combinations clusters in the wrong location. Meanwhile, with the current implementation of supervised models, 300 to 500 DEM simulations would be neccessary to train the models, and and about 20 more are neccessary to verify the combinations that supervised models output (training and interpolating time are not taken into account here since they are negligible compare to simulation time). 
+The current calibration routine using GL for static AoR costs around 120 to 150 DEM simulations for each attempt(therefore, approximately 300 to 400 DEM simululations, taken into account unfinished attempt), depends on how many iterations are needed. And most of the time, GL will delivers an adequate solution~-~except the first attempt with limestone as mentioned in section~\ref{section:GLPerformance}, where GL sampled combinations clusters in the wrong location. Meanwhile, with the current implementation of supervised models, 400 to 500 DEM simulations would be neccessary to train the models, and and about 20 more are neccessary to verify the combinations that supervised models output (training and interpolating time are not taken into account here since they are negligible compare to simulation time). However, from the data obtained it is clear that NN and RF models can output more valid combinations compare to GL. This is crucial, since one combinations that valid for this bulk parameter might not work for other bulk parameter, as mentioned in section~\ref{section:Introduction}. 
 
-However, computational efficiency would not be the only factor in weighing different method, since this approach of calibration (matching DEM bulk value with experimental bulk value) has no unique solution, i.e., a combinations of microparameters that works  
-
-
-
-one of the main point: computational efficiency. 
--Assume a calibration with GL cost 40 DEM simulations per iteration, for each bulk parameter it would be 7-8 iterations ~ 300 DEM simulations = > less DEM simulations, fully automatic, has been proven for more complex contact laws. 
-
-- For limestone, the amount of DEM simulations used to train NN and RF are 485, and for quartz sand are 322. The numbers are slightly higher than GL, but the performance are more robust from a small experiment: Produces multiple valid combinations per bulk parameter, therefore easier to identify the correct one by comparision with other bulk parameter's combinations. 
-
-- Limitations of RF: has not been tested against complex contact laws
-
-Throughout multiple calibration routines with GrainLearning, it is identified that the initial guessing range played a key role in the ability of GL to idenfity the correct set of micro-parameters.
+One major stregth of GL and NN is that it has been implemented and tested in serveral use case (see~\cite{gl-performancestudy,gl-quantification} for GL), while Random Forest models~-~a relatively known algorithm in machine learning, has not been verified against more complex contact laws in the calibration problem to date. 

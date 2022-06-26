@@ -1,25 +1,53 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% https://bibdesk.sourceforge.io/
 
-%% Created for Hung Nguyen at 2022-06-26 17:06:16 +0200 
+%% Created for Hung Nguyen at 2022-06-26 17:17:01 +0200 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
+@article{gl-performancestudy,
+title = "Performance study of iterative Bayesian filtering to develop an efficient calibration framework for {DEM}",
+abstract = "This work presents an efficient probabilistic framework for the Bayesian calibration of micro-mechanical parameters for Discrete Element Method (DEM) modelling. Firstly, the superior behaviour of the iterative Bayesian filter over the sequential Monte Carlo filter for calibrating micro-mechanical parameters is shown. The linear contact model with rolling resistance is used for simulating the triaxial responses of Toyoura sand under different confining pressures. Secondly, synthetic data from DEM simulations of triaxial compression are used to assess the reliability of iterative Bayesian filtering with respect to the user-defined parameters, such as the number of samples and predefined parameter ranges. Excellent calibration results with errors between 1 and 2% are obtained when the number of samples is chosen high enough. It is crucial that the sample size is representative for the distribution of individual parameters within the predefined parameter ranges. The wider the ranges, the more samples are required. The investigation also shows the necessity of including both stress and strain histories, at certain confidence levels, for estimation of the correct mechanical responses, especially the correct fabric responses. Finally, based on the findings of this work a fully-automated open-source calibration tool is developed and demonstrated for selected stress paths.",
+keywords = "Bayesian calibration, Convergence, Discrete Element Method (DEM), Machine learning, Multi-objective optimisation, Triaxial compression, UT-Hybrid-D",
+author = "Philipp Hartmann and Hongyang Cheng and Klaus Thoeni",
+year = {2022},
+month = jan,
+doi = "10.1016/j.compgeo.2021.104491",
+language = "English",
+volume = "141",
+journal = "Computers and Geotechnics",
+issn = "0266-352X",
+publisher = "Elsevier"
+}
 
+@inproceedings{gl-quantification,
+title = "Bayesian Uncertainty Quantification for Geomechanical Models at Micro and Macro Scales",
+abstract = "Uncertainty exists in geomaterials at contact, microstructural, and continuum scales. To develop predictive, robust multi-scale models for geotechnical problems, the new challenge is to allow for the propagation of model/parameter uncertainty (conditioned on laboratory/field measurements) between micro and macro scales. We aim to first quantify these uncertainties using an iterative Bayesian filtering framework. The framework utilizes the recursive Bayes{\textquoteright} rule to quantify the evolution of parameter uncertainties over time, and the nonparametric Gaussian mixture model to iteratively resample parameter space. Using the iteratively trained mixture to guide resampling, model evaluations are allocated asymptotically close to posterior modes, thus greatly reducing the computation cost. In this paper, we first respectively quantify the parameter uncertainty of models that are discrete and continuum in nature, namely a discrete particle and an elasto-plastic model. We then link the two models by conditioning their uncertainties on the same stress-strain response, thereby revealing micro-macro parameter correlations and their uncertainties. The micro-macro correlations obtained can be either general for any granular materials that share similar polydispersity or conditioned on the laboratory data of specific ones.",
+keywords = "Bayesian filtering, Constitutive modeling, Discrete element modeling, Micro-macro parameter correlations, Uncertainty quantification",
+author = "Hongyang Cheng and Vanessa Magnanimo and Takayuki Shuku and Stefan Luding and Thomas Weinhart",
+year = {2021},
+month = jan,
+day = "15",
+doi = "10.1007/978-3-030-64514-4_90",
+language = "English",
+isbn = "978-3-030-64513-7",
+series = "Lecture Notes in Civil Engineering",
+publisher = "Springer",
+pages = "837--845",
+booktitle = "Challenges and Innovations in Geomechanics",
+}
 
 
 @article{reviewCalibration,
 	author = {Coetzee, C.J.},
 	date-added = {2022-06-26 17:06:09 +0200},
-	date-modified = {2022-06-26 17:06:16 +0200},
+	date-modified = {2022-06-26 17:17:01 +0200},
 	document_type = {Review},
 	doi = {10.1016/j.powtec.2017.01.015},
 	journal = {Powder Technology},
-	note = {cited By 301},
 	pages = {104-142},
 	source = {Scopus},
 	title = {Review: Calibration of the discrete element method},
-	url = {https://www.scopus.com/inward/record.uri?eid=2-s2.0-85009413802&doi=10.1016%2fj.powtec.2017.01.015&partnerID=40&md5=0dafb7fc07980611e2ee81cc18f9b030},
 	volume = {310},
 	year = {2017},
 	bdsk-url-1 = {https://www.scopus.com/inward/record.uri?eid=2-s2.0-85009413802&doi=10.1016%2fj.powtec.2017.01.015&partnerID=40&md5=0dafb7fc07980611e2ee81cc18f9b030},
