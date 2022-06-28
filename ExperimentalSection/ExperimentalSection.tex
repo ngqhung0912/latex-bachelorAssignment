@@ -1,4 +1,7 @@
 \section{GrainLearning evaluation}\label{section:GLPerformance} 
+ 
+This section discusses the calibration results for quartz sand and limestone's static AoR with GrainLearning. For each material, calibration was performed in three different attempts, with the difference between each attempt being the search range specified (see table~\ref{table:GLCalibration}), i.e., GL will try to sample different combinations in the first iteration within that range. In the first attempt, the search range was in the default setting, and the second and third attempts will be adjusted according to the first result.
+
 \begin{table}[H]
     \centering
     \begin{tabular}{l|lll|lll}
@@ -11,8 +14,6 @@
     \end{tabular}
     \caption{Calibration attempts using GL}\label{table:GLCalibration}
 \end{table}
- gives details on different calibrations with GL for two materials mentioned
-and limestone. The difference between each attempt is that the search range of the microparameters changed. The first attempt serves as the control for both materials, while the second and the third are set up in smaller ranges. Overall, approximately 200 DEM simulations were performed for quartz sand, and 3 produced a valid combination. For limestone, 300 DEM simulations were performed, and five are valid. The valid combinations are marked in bold on the result tables in the following section.
 
 
 \subsection{Limestone}
@@ -24,8 +25,6 @@ After the first calibration attempt, it is clear that the combinations that woul
 
 As expected, the second attempt's performance was the most robust, reaching a near-perfect solution at the end of iteration 4. The clustering of the optimal result can also be seen clearly in figure~\ref{fig:EskalGL}. Meanwhile, the results from the third attempt verify the conclusion from the first attempt about the range of the optimal parameters~-~with higher rolling friction, sliding friction, and bond number, the static AoR reaches a maximum value of around $65^{\circ}$.
 
-
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.51]{ParametersObserver_Eskal150.png}
@@ -33,10 +32,7 @@ As expected, the second attempt's performance was the most robust, reaching a ne
     \includegraphics[scale=0.51]{ParametersObserver_Eskal150_2.png}
     \caption{\textit{From top to bottom,} attempt 1, 2, and 3 at calibrating Eskal with GL.\@ Scatter dots with different colors denote each iteration, and red line denotes experimental value.}\label{fig:EskalGL}
 \end{figure}
-
-
-
-
+    
 \begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{%
@@ -56,7 +52,7 @@ As expected, the second attempt's performance was the most robust, reaching a ne
     }
     \caption{Calibration results of limestone with GL.}\label{table:resEskalGL}
 \end{table}
-    
+
 \subsection{Quartz sand}
 
 The calibration result for quartz sand is given in table~\ref{table:resSandGL}, and the parameters sampling graph is given in figure~\ref{fig:QuartzGL}. In the control attempt, only the first iteration is shown, partly due to 6/40 simulations of the second iteration does not finish in time, but also due to the results of the second iteration does not cluster at the experimental value, with most averaging around $45^{\circ}$ to $50^{\circ}$. Due to the similarity between quartz sand and limestone in terms of experimental static AoR, the second attempt of quartz sand will be initialized with the same range as the second attempt of limestone. And as a result, attempt 2 has the best performance out of the three. One noticeable thing here is that the rolling friction has two different clusters identified by GL instead of one, compared to sliding friction, restitution coefficient, or bond number. This denotes the multi-solution phenomena of a calibration problem since there could be more than one combination that can produce a sufficient static AoR~-~which is shown in iterations 3 and 4 of attempt 2: the rolling friction for iteration 3 is 0.07, while for iteration 4 is 0.41. Different experiments, i.e., Shear Cell test or Drum test (Dynamic AoR), would be needed in addition to the heap test to find an ideal combination of microparameters. However, this is out of the scope of the current research. 
@@ -72,7 +68,7 @@ In the third attempt, although the range was specified as shown in table~\ref{ta
     \caption{\textit{From top to bottom,} attempt 1, 2, and 3 at calibrating quartz sand with GL.\@ Scatter dots with different colors denote each iteration, and red line denotes experimental value.}\label{fig:QuartzGL}
 \end{figure}
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{c|ccccc}
@@ -89,14 +85,15 @@ In the third attempt, although the range was specified as shown in table~\ref{ta
     \end{tabular}%
     }\caption{Calibration results of sand with GL.}\label{table:resSandGL}
 \end{table}
-    \subsection{Discussion} 
+
+\subsection{Discussion} 
  
- Overall, GL has demonstrated the capability to identify the `cluster' in all calibration cases that the initial ranges were correctly defined~-~the combinations after each iterations are sampled closer and closer to the experimental value, as shown in attempt 2 of limestone and quartz sand. However, it has also shown inconsistent performance: In attempt 1 of limestone, the algorithm seeks to cluster in the range of $35^{\circ}$ to $45^{\circ}$. 
+Overall, GL has demonstrated the capability to identify the `cluster' in all calibration cases that the initial ranges were correctly defined~-~the combinations after each iteration are sampled closer and closer to the experimental value, as shown in attempt 2 of limestone and quartz sand. However, it has also shown inconsistent performance: In attempt 1 of limestone, the algorithm seeks to cluster in the range of $35^{\circ}$ to $45^{\circ}$. 
 
 
 \section{Supervised model evaluation}\label{section:supervisedPerformance}
 
-In this section, the performance of the two supervised models, i.e., Neural Network and Random Forest, is investigated for limestone and quartz sand, respectively. For the NN model, over 800,000 different combinations, as describe in table~\ref{table:randomCombinations}, has been processed~-~and over 2,000,000 for RF model. Any combinations that produce a static AoR within the $0.1\%$ margin of error to the experimental data are marked as a correct combination. This combination will then be evaluated independently by a DEM simulation to verify the ability of supervised models to correctly describe a material's bulk behaviour based on the given contact law. 
+In this section, the performance of the two supervised models, i.e., Neural Network and Random Forest, is investigated for limestone and quartz sand, respectively. For the NN model, over 800,000 combinations, as described in table~\ref{table:randomCombinations}, have been processed~-~and over 2,000,000 for the RF model. Any combinations that produce a static AoR within the $0.1\%$ margin of error to the experimental data are marked as a correct combination. This combination will then be evaluated independently by a DEM simulation to verify the ability of supervised models to correctly describe a material's bulk behavior based on the given contact law. 
 
 \begin{table}[H]
     \centering
@@ -170,7 +167,7 @@ For limestone, 12 over 800,000 combinations of DEM input parameters processed by
 
 \subsection{Quartz Sand}
 
-It is noteworthy that the quartz sand model was trained with less simulations compare to limestone model, with 322 DEM simulations. However, the performance of NN model when predicting the correct combinations that results in a static AoR of $33^{\circ}$: 4 out of 10 combinations are valid after verified by a full DEM simulation. Meanwhile, while the RF model predicts 20 different combinations, only 3 of them were valid~-~but interestingly, most of the combinations predict by RF model ranging very close to the experimental value, from  $29^{\circ}$ to  $31^{\circ}$. The number of combinations passed to NN and RF model for quartz sand is approximately the same as for limestone. 
+The quartz sand model was trained with fewer simulations compared to the limestone model, with 322 DEM simulations, partially due to more simulations with quartz sand cannot be complete. However, data from the completed simulations have shown that the uncompleted one would mainly result in a static AoR of $50^{\circ}$ or higher~-~therefore, it was less likely to affect the trained models' ability to predict the correct combinations since the experimental data is $33^{\circ}$. The performance of the NN model was strong: 4 out of 10 combinations are valid after being verified by a full DEM simulation. Meanwhile, while the RF model predicts 20 different combinations, only three were valid~-~but interestingly, most of the combinations predicted by the RF model range very close to the experimental value, from $29^{\circ}$ to $31^{\circ}$. The number of combinations passed to NN and RF model for quartz sand is approximately the same as for limestone. 
 
 \begin{figure}[H]
     \centering
@@ -234,14 +231,13 @@ It is noteworthy that the quartz sand model was trained with less simulations co
 
 In the current approach, NN and RF models have demonstrated the ability to capture the bulk DPM behavior and generate a database that can then be used to interpolate bulk parameters. Due to limited training data, it is not expected that the models would have a high accuracy in the interpolation step, so a validation step is needed. However, the current number of valid combinations does not meet the expectations of a calibration problem. This can be seen in the quartz sand's RF model: multiple combinations that have been marked as valid by the model have either the same sliding friction or bond number~-~and this is the case for the NN model with limestone as well. One possible solution for this is to extend the `valid' combination range from the current $33\pm0.001$~-~however this will result in a lot more valid combinations and thus only be possible if combined with other bulk tests to reduce the number of verification simulations. Only the combinations that produce satisfactory value in all bulk tests will be verified with DEM simulations. 
 
-Another limitations of the supervised approach is that each trained model only account for a single contact law~-~in this case is the linear-spring dashpot model. If the current contact law is not appropriate to describe the granular material, choosing another contact law would require a completely new model. 
-
+Another limitation of the supervised approach is that each trained model only accounts for a single contact law~-~in this case is the linear-spring dashpot model. If the current contact law is not appropriate for describing the granular material, choosing another contact law would require a new model. 
 
 
 \section{Model comparision}\label{section:discussion}
 
-One of the most important factor in the calibration process of DPM is computational efficiency, since each DEM simulation is very costly in term of resources (for a static AoR, the simulation time varies from 2 to 24 hours each, and other simulations such as Dynamic AoR, shear cell test are even more expensive). 
+One of the most vital factors in the calibration process of DPM is computational efficiency since each DEM simulation is very costly in terms of resources (for a static AoR, the simulation time varies from 2 to 24 hours each, and other simulations such as Dynamic AoR, shear cell test are even more expensive). 
 
-The current calibration routine using GL for static AoR costs around 120 to 150 DEM simulations for each attempt(therefore, approximately 300 to 400 DEM simululations, taken into account unfinished attempt), depends on how many iterations are needed. And most of the time, GL will delivers an adequate solution~-~except the first attempt with limestone as mentioned in section~\ref{section:GLPerformance}, where GL sampled combinations clusters in the wrong location. Meanwhile, with the current implementation of supervised models, 400 to 500 DEM simulations would be neccessary to train the models, and and about 20 more are neccessary to verify the combinations that supervised models output (training and interpolating time are not taken into account here since they are negligible compare to simulation time). However, from the data obtained it is clear that NN and RF models can output more valid combinations compare to GL. This is crucial, since one combinations that valid for this bulk parameter might not work for other bulk parameter, as mentioned in section~\ref{section:Introduction}. 
+The current calibration routine using GL for static AoR costs around 120 to 150 DEM simulations for each attempt(therefore, approximately 300 to 400 DEM simulations, taking into account unfinished attempts), depending on how many iterations are needed. Moreover, most of the time, GL will deliver an adequate solution~-~except the first attempt with limestone, as mentioned in section~\ref{section:GLPerformance}, where GL sampled combinations clusters in the wrong location. Meanwhile, with the current implementation of supervised models, 400 to 500 DEM simulations would be necessary to train the models, and about 20 more are necessary to verify the combinations that supervised models output (training and interpolating time are not taken into account here since they are negligible compare to simulation time). However, from the data obtained, NN and RF models can output more valid combinations than GL. This is crucial since one combination that is valid for this bulk parameter might not work for another bulk parameter, as mentioned in section~\ref{section:Introduction}. 
 
-One major stregth of GL and NN is that it has been implemented and tested in serveral use case (see~\cite{gl-performancestudy,gl-quantification} for GL), while Random Forest models~-~a relatively known algorithm in machine learning, has not been verified against more complex contact laws in the calibration problem to date. 
+One major strength of GL and NN is that it has been implemented and tested in several use case (see~\cite{gl-performancestudy,gl-quantification} for GL), while Random Forest models~-~a relatively known algorithm in machine learning, has not been verified against more complex contact laws in the calibration problem to date. 

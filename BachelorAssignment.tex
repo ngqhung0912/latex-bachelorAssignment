@@ -52,11 +52,23 @@
 
 
 \begin{center}
-    This is where, stuff, happens. Literally. But not yet. Please wait. 
+    This research presents a comprehensive study on the use of machine learning in the calibration problem of the Discrete Particle Model, with a particular focus on one bulk parameter: the static angle of repose. Three machine learning algorithms have been tested, including GrainLearning~-~the unsupervised algorithm explicitly developed for DPM calibration, and two other popular supervised learning algorithms: Neural Network and Random Forest regressor. With GrainLearning, multiple attempts have been made to analyse its ability to find the correct combinations of microparameters that can reproduce the experimental static angle of repose in DEM simulations. Meanwhile, after a training period consisting of hundreds of DEM simulations, the NN and RF are capable of providing a database which can be used to find the microparamters that correspond to the experimental static angle of repose. Subsequent validations of those combinations using DEM simulations indicate that multiple combinations are correct, paving the way for future research on adapting more supervised machine learning algorithms in the calibration problem with different contact laws and bulk parameters. 
+
+    © Hung Nguyen 2022. This work is licensed under a CC BY 4.0 license. 
 \end{center}
 
 
 
+\pagebreak
+\topskip0pt
+\vspace*{\fill}
+\begin{flushright}
+    \textit{to my mom and my dad, who have supported me unconditionally on my learning journey abroad, \\ to all my friends who spent time listening to me ranting all the time, \\ to my sister, who always tries to distract me while I am writing, \\ and to my special one who has always been by my side,}\\
+    \textit{thank you.}
+    \end{flushright}
+    
+\vspace*{\fill}
+%
 \pagebreak
 
 \tableofcontents
@@ -111,7 +123,7 @@
 
 \input{ExperimentalSection/ExperimentalSection.tex}
 
-\section{Conclusion} 
+\section{Conclusion}\label{section:conclusion}
 \input{ConclusionSection/conclusion.tex}
 
 \pagebreak 
@@ -119,10 +131,6 @@
 
 
 \bibliography{citation}
-
-\begin{center}
-© 2022. This work is licensed under a CC BY 4.0 license. 
-\end{center}
 
 
 \end{document}
